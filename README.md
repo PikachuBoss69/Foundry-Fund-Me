@@ -1,3 +1,6 @@
+## MY FIRST PROJECT
+**This is an app for crowdfunding created using solidity and foundry** 
+
 ## Foundry
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
