@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import {PriceConverter} from "./PriceConverter.sol";
 
@@ -13,14 +12,13 @@ contract FundMe {
     mapping(address => uint256) private s_addressToAmountFunded;
     address[] private s_funders;
 
-    address private  immutable  i_owner;
+    address private immutable i_owner;
     uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
     AggregatorV3Interface private s_priceFeed;
 
     constructor(address priceFeed) {
         i_owner = msg.sender;
         s_priceFeed = AggregatorV3Interface(priceFeed);
-        
     }
 
     function fund() public payable {
@@ -59,7 +57,6 @@ contract FundMe {
         require(callSuccess, "Call failed");
     }
 
-
     fallback() external payable {
         fund();
     }
@@ -67,15 +64,16 @@ contract FundMe {
     receive() external payable {
         fund();
     }
+
     function getAddressToAmountFunded(address funder) public view returns (uint256) {
         return s_addressToAmountFunded[funder];
     }
-    function getFunder(uint256 index) public view returns (address) {   
+
+    function getFunder(uint256 index) public view returns (address) {
         return s_funders[index];
     }
+
     function getOwner() public view returns (address) {
         return i_owner;
     }
 }
-
-
